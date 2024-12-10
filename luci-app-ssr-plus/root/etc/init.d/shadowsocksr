@@ -124,14 +124,14 @@ echolog() {
 
 add_cron() {
 	touch $CRON_FILE
-	sed -i '/ssrplus.log/d' $CRON_FILE
+	sed -i '/ssrplusupdate.sh/d' $CRON_FILE
 	[ $(uci_get_by_type server_subscribe auto_update 0) -eq 1 ] && echo "0 $(uci_get_by_type server_subscribe auto_update_time) * * * /usr/share/shadowsocksr/ssrplusupdate.sh >$LOG_FILE" >>$CRON_FILE
 	crontab $CRON_FILE
 }
 
 del_cron() {
 	touch $CRON_FILE
-	sed -i '/ssrplus.log/d' $CRON_FILE
+	sed -i '/ssrplusupdate.sh/d' $CRON_FILE
 	crontab $CRON_FILE
 	clean_log
 }
